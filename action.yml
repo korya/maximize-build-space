@@ -51,6 +51,7 @@ runs:
       shell: bash
       run: |
           set -euo pipefail
+          set -x
 
           BUILD_MOUNT_PATH="${{ inputs.build-mount-path }}"
           if [[ -z "${BUILD_MOUNT_PATH}" ]]; then
