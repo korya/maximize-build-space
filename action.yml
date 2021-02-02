@@ -82,7 +82,7 @@ runs:
           echo
           
           if [[ "${{ inputs.no-lvm }}" == 'true' ]]; then
-            return 0
+            exit 0
           fi
 
           echo "Removing unwanted software... "
