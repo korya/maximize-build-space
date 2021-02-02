@@ -7,7 +7,7 @@ inputs:
   no-lvm:
     description: 'Do not create LVM volume. This option invalidates "root-reserve-mb", "swap-size-mb", "build-mount-path" and "pv-loop-path".'
     required: false
-    default: false
+    default: 'false'
   root-reserve-mb:
     description: 'Space to be left free on the root filesystem, in Megabytes.'
     required: false
@@ -81,7 +81,7 @@ runs:
           echo
           echo
           
-          if [[ "${{ inputs.no-lvm }}" == "" ]]; then
+          if [[ "${{ inputs.no-lvm }}" == 'true' ]]; then
             return 0
           fi
 
