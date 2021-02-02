@@ -80,10 +80,6 @@ runs:
           fi
           echo
           echo
-          
-          if [[ "${{ inputs.no-lvm }}" == 'true' ]]; then
-            exit 0
-          fi
 
           echo "Removing unwanted software... "
           if [[ ${{ inputs.remove-dotnet }} == 'true' ]]; then
@@ -96,6 +92,10 @@ runs:
             sudo rm -rf /opt/ghc
           fi
           echo "... done"
+          
+          if [[ "${{ inputs.no-lvm }}" == 'true' ]]; then
+            exit 0
+          fi
 
           TMP_DEV=$(df --output=source  /mnt/ | tail -1)
           ROOT_RESERVE_KB=$(expr ${{ inputs.root-reserve-mb }} \* 1024)
