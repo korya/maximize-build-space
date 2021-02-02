@@ -4,6 +4,10 @@ branding:
   icon: 'crop'
   color: 'orange'
 inputs:
+  no-lvm:
+    description: 'Do not create LVM volume. This option invalidates "root-reserve-mb", "swap-size-mb", "build-mount-path" and "pv-loop-path".'
+    required: false
+    default: false
   root-reserve-mb:
     description: 'Space to be left free on the root filesystem, in Megabytes.'
     required: false
@@ -76,6 +80,10 @@ runs:
           fi
           echo
           echo
+          
+          if [[ "${{ inputs.no-lvm }}" == "" ]]; then
+            return 0
+          fi
 
           echo "Removing unwanted software... "
           if [[ ${{ inputs.remove-dotnet }} == 'true' ]]; then
